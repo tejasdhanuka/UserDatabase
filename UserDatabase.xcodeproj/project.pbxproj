@@ -15,6 +15,7 @@
 		7F8F05AA253331170076AC2A /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F05A9253331170076AC2A /* NetworkError.swift */; };
 		7F8F05AF253340C50076AC2A /* UserListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F05AE253340C50076AC2A /* UserListCellViewModel.swift */; };
 		7F8F05B425334A3B0076AC2A /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F05B325334A3B0076AC2A /* UserDetailViewController.swift */; };
+		7F8F05B925334DD60076AC2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8F05B825334DD60076AC2A /* Constants.swift */; };
 		7F9491B7252B49A90086BCB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9491B6252B49A90086BCB2 /* AppDelegate.swift */; };
 		7F9491B9252B49A90086BCB2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9491B8252B49A90086BCB2 /* SceneDelegate.swift */; };
 		7F9491C0252B49AB0086BCB2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9491BF252B49AB0086BCB2 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		7F8F05A9253331170076AC2A /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7F8F05AE253340C50076AC2A /* UserListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCellViewModel.swift; sourceTree = "<group>"; };
 		7F8F05B325334A3B0076AC2A /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		7F8F05B825334DD60076AC2A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7F9491B3252B49A90086BCB2 /* UserDatabase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UserDatabase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9491B6252B49A90086BCB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F9491B8252B49A90086BCB2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				7F8F05A9253331170076AC2A /* NetworkError.swift */,
+				7F8F05B825334DD60076AC2A /* Constants.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F44DA012532E7A30072E832 /* UserDatabaseAPIClient.swift in Sources */,
+				7F8F05B925334DD60076AC2A /* Constants.swift in Sources */,
 				7F8F05AA253331170076AC2A /* NetworkError.swift in Sources */,
 				7F239E942531E83C00BD031B /* UserListCell.swift in Sources */,
 				7F239E7B2531D9B300BD031B /* UserListViewController.swift in Sources */,

@@ -57,7 +57,7 @@ final class UserListViewController: UIViewController {
             userListTableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
             userListTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        userListTableView.register(UserListCell.self, forCellReuseIdentifier: "UserListCell")
+        userListTableView.register(UserListCell.self, forCellReuseIdentifier: Constants.userListCellReuseIdentifier)
     }
     
     // MARK: - load data
@@ -90,7 +90,7 @@ extension UserListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserListCell") as? UserListCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.userListCellReuseIdentifier) as? UserListCell else {
             return UITableViewCell()
         }
         cell.selectionStyle = .none

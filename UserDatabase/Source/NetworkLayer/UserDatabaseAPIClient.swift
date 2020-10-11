@@ -9,7 +9,7 @@ import Foundation
 
 class UserDatabaseAPIClient: NSObject {
     
-    private let sourcesURL = URL(string: "https://jsonplaceholder.typicode.com/users")!
+    private let sourcesURL = URL(string: Constants.userDatabaseURLString)!
     
     func fetchUserDatabaseList(completion : @escaping (Result<UserDatabaseList, NetworkError>) -> Void) {
         URLSession.shared.dataTask(with: sourcesURL) { (data, urlResponse, error) in
