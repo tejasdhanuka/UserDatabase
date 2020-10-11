@@ -31,7 +31,7 @@ final class UserListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        loadData()
     }
     
     // MARK: - Setup
@@ -62,13 +62,9 @@ final class UserListViewController: UIViewController {
     
     // MARK: - load data
     private func loadData() {
-        viewModel.reloadData(completion: { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let hasContent):
-                print("\(hasContent)")
-            case .failure(let error):
-                print(error)
+        viewModel.reloadData(completion: { success in
+            DispatchQueue.main.async {
+                self.userListTableView.reloadData()
             }
         })
     }
@@ -78,8 +74,6 @@ final class UserListViewController: UIViewController {
 
 extension UserListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        guard let url = viewModel.newsUrl(for: indexPath) else {return}
-        //        delegate?.didTapFashionMatomeArticle(with: url)
         print("\(indexPath.row)")
     }
 }
@@ -100,7 +94,7 @@ extension UserListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
-        //        cell.viewModel = viewModel.cellViewModel(for: indexPath)
+        cell.viewModel = viewModel.cellViewModel(for: indexPath)
         return cell
     }
 }

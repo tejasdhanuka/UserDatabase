@@ -21,9 +21,17 @@ final class UserDatabaseViewModel {
     }
     
     // MARK: - custom methods
-    func reloadData(completion: @escaping (Result<Bool, NetworkError>) -> Void) {
-        apiClient.fetchUserDatabaseList {(userList) in
-            print(userList)
+    func reloadData(completion: @escaping (Bool) -> Void) {
+        apiClient.fetchUserDatabaseList { result in
+            switch result {
+            case let .success(response):
+                self.userDatabaseList = nil
+                self.userDatabaseList = response.userList
+                completion(true)
+            case let .failure(error):
+                self.userDatabaseList = nil
+                completion(false)
+            }
         }
     }
     
@@ -40,11 +48,11 @@ final class UserDatabaseViewModel {
         userDatabaseList?.count ?? 0
     }
     
-//    func cellViewModel(for indexPath: IndexPath) -> FashionMatomeArticleViewModel {
-//        guard let userDatabaseList = userDatabaseList else {
-//            fatalError("Fetched an article for an invalid indexPath: \(indexPath)")
-//        }
-//        let user = userDatabaseList[indexPath.row]
-//        return FashionMatomeArticleViewModel(from: user)
-//    }
+    func cellViewModel(for indexPath: IndexPath) -> UserListCellViewModel {
+        guard let userDatabaseList = userDatabaseList else {
+            fatalError("Fetched an article for an invalid indexPath: \(indexPath)")
+        }
+        let user = userDatabaseList[indexPath.row]
+        return UserListCellViewModel(from: user)
+    }
 }
