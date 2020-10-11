@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = UserDatabaseViewController(nibName: "UserDatabaseViewController", bundle: nil)
+            self.window?.rootViewController = UserListViewController(viewModel: UserDatabaseViewModel())
             self.window?.makeKeyAndVisible()
             return true
         }

@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct UserDatabaseList: Decodable {
+    var userList: [UserDatabase]
+}
+
 struct UserDatabase: Decodable {
     var id: Int
     var name: String
@@ -16,10 +20,6 @@ struct UserDatabase: Decodable {
     var phone: String
     var website: String
     var company: Company
-    
-    enum Codingkeys: String, CodingKey {
-        case id, name, username, email, address, phone, website, company
-    }
 }
 
 struct Address: Decodable {
