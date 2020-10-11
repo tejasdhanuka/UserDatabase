@@ -21,7 +21,7 @@ final class UserDatabaseViewModel {
     }
     
     // MARK: - custom methods
-    func reloadData(completion: @escaping (Result<Bool, Error>) -> Void) {
+    func reloadData(completion: @escaping (Result<Bool, NetworkError>) -> Void) {
         apiClient.fetchUserDatabaseList {(userList) in
             print(userList)
         }

@@ -12,15 +12,15 @@ class UserListCell: UITableViewCell {
     
     // MARK: - Properties
     
-    //    var viewModel: FashionMatomeArticleViewModel! {
-    //        didSet {
-    //            guard let viewModel = viewModel else { return }
-    //            matomeArticleImageView.ext.setImage(with: viewModel.imageURL, completed: nil)
-    //            titleLabel.text = viewModel.title
-    //            dateLabel.text = viewModel.publicDate
-    //            newTagLabel.isHidden = !viewModel.isNew
-    //        }
-    //    }
+    var viewModel: UserListCellViewModel! {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            nameLabel.text = viewModel.name
+            phoneNumberLabel.text = viewModel.phone
+            websiteLabel.text = viewModel.website
+            companyNameLabel.text = viewModel.companyName
+        }
+    }
     
     private let containerView: UIView = {
         let view = UIView()

@@ -11,12 +11,31 @@ class UserDatabaseAPIClient: NSObject {
     
     private let sourcesURL = URL(string: "https://jsonplaceholder.typicode.com/users")!
     
-    func fetchUserDatabaseList(completion : @escaping (UserDatabaseList) -> ()) {
+    func fetchUserDatabaseList(completion : @escaping (Result<UserDatabaseList, NetworkError>) -> Void) {
         URLSession.shared.dataTask(with: sourcesURL) { (data, urlResponse, error) in
-            if let data = data {
-                let jsonDecoder = JSONDecoder()
-                let userDatabaseList = try! jsonDecoder.decode([UserDatabase].self, from: data)
-                completion(UserDatabaseList(userList: userDatabaseList))
+            // Handle connectivity issues
+            if let error = error {
+                let networkError: NetworkError
+                if (error as NSError).code == NSURLErrorCancelled {
+                    networkError = .cancelled
+                } else {
+                    networkError = .unknownError(error)
+                }
+                completion(.failure(networkError))
+                return
+            }
+            
+            // Handle data
+            guard let data = data, data.count > 0 else {
+                completion(.failure(NetworkError.noData))
+                return
+            }
+            
+            do {
+                let response = try JSONDecoder().decode([UserDatabase].self, from: data)
+                completion(.success(UserDatabaseList(userList: response)))
+            } catch let error {
+                completion(.failure(NetworkError.decodeError(error)))
             }
         }.resume()
     }
