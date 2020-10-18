@@ -17,7 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         } else {
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            self.window?.rootViewController = UserListViewController(viewModel: UserDatabaseViewModel())
+            
+            let navController = UINavigationController()
+            let userListVC = UserListViewController(viewModel: UserDatabaseViewModel())
+            
+            navController.viewControllers = [userListVC]
+            navController.navigationBar.backgroundColor = UIColor.white
+            
+            self.window?.rootViewController = navController
             self.window?.makeKeyAndVisible()
             return true
         }

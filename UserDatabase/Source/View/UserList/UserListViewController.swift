@@ -20,6 +20,7 @@ final class UserListViewController: UIViewController {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupViewHierarchy()
+        self.navigationController?.navigationBar.backgroundColor = UIColor.white
     }
     
     // This is also necessary when extending the superclass
@@ -68,13 +69,8 @@ final class UserListViewController: UIViewController {
             }
         })
     }
-}
-
-// MARK: Tableview delegate
-
-extension UserListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)")
+    
+    private func showDetailViewController() {
     }
 }
 
@@ -96,5 +92,14 @@ extension UserListViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         cell.viewModel = viewModel.cellViewModel(for: indexPath)
         return cell
+    }
+}
+
+// MARK: Tableview delegate
+
+extension UserListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = UserDetailViewController()
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }

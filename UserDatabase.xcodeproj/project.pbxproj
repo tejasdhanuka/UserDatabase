@@ -123,9 +123,8 @@
 		7F2EE826252B544400AB3103 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7F239E7A2531D9B300BD031B /* UserListViewController.swift */,
-				7F239E932531E83C00BD031B /* UserListCell.swift */,
-				7F8F05B325334A3B0076AC2A /* UserDetailViewController.swift */,
+				7F6FEC6E253C0830000954EA /* UserList */,
+				7F6FEC72253C0841000954EA /* UserDetail */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -136,6 +135,23 @@
 				7F44DA002532E7A30072E832 /* UserDatabaseAPIClient.swift */,
 			);
 			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		7F6FEC6E253C0830000954EA /* UserList */ = {
+			isa = PBXGroup;
+			children = (
+				7F239E7A2531D9B300BD031B /* UserListViewController.swift */,
+				7F239E932531E83C00BD031B /* UserListCell.swift */,
+			);
+			path = UserList;
+			sourceTree = "<group>";
+		};
+		7F6FEC72253C0841000954EA /* UserDetail */ = {
+			isa = PBXGroup;
+			children = (
+				7F8F05B325334A3B0076AC2A /* UserDetailViewController.swift */,
+			);
+			path = UserDetail;
 			sourceTree = "<group>";
 		};
 		7F8F05A7253330B80076AC2A /* Helper */ = {
