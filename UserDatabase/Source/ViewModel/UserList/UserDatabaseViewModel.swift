@@ -55,4 +55,12 @@ final class UserDatabaseViewModel {
         let user = userDatabaseList[indexPath.row]
         return UserListCellViewModel(from: user)
     }
+    
+    func detailViewModel(for indexPath: IndexPath) -> UserDetailViewModel {
+        guard let userDatabaseList = userDatabaseList else {
+            fatalError("Invalid indexPath: \(indexPath)")
+        }
+        let user = userDatabaseList[indexPath.row]
+        return UserDetailViewModel(from: user)
+    }
 }

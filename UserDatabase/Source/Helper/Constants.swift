@@ -10,4 +10,5 @@ import Foundation
 struct Constants {
     static let userDatabaseURLString = "https://jsonplaceholder.typicode.com/users"
     static let userListCellReuseIdentifier = "UserListCell"
+    static let userDetailCellReuseIdentifier = "UserDetailCell"
 }

@@ -19,8 +19,8 @@ final class UserListViewController: UIViewController {
     required init(viewModel: UserDatabaseViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        setupViewHierarchy()
-        self.navigationController?.navigationBar.backgroundColor = UIColor.white
+        setup()
+        
     }
     
     // This is also necessary when extending the superclass
@@ -36,6 +36,12 @@ final class UserListViewController: UIViewController {
     }
     
     // MARK: - Setup
+    
+    private func setup() {
+        self.navigationController?.navigationBar.backgroundColor = UIColor.white
+        self.title = "User List"
+        setupViewHierarchy()
+    }
     
     private func setupViewHierarchy() {
         userListTableView = UITableView()
@@ -62,15 +68,13 @@ final class UserListViewController: UIViewController {
     }
     
     // MARK: - load data
+    
     private func loadData() {
         viewModel.reloadData(completion: { success in
             DispatchQueue.main.async {
                 self.userListTableView.reloadData()
             }
         })
-    }
-    
-    private func showDetailViewController() {
     }
 }
 
@@ -99,7 +103,7 @@ extension UserListViewController: UITableViewDataSource {
 
 extension UserListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = UserDetailViewController()
+        let detailVC = UserDetailViewController(viewModel: viewModel.detailViewModel(for: indexPath))
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
