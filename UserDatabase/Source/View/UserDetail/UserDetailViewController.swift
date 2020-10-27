@@ -79,10 +79,11 @@ extension UserDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.userListCellReuseIdentifier) as? UserListCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.userDetailCellReuseIdentifier) as? UserDetailCell else {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
+        cell.viewModel = viewModel
         return cell
     }
 }
@@ -91,6 +92,6 @@ extension UserDetailViewController: UITableViewDataSource {
 
 extension UserDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        return
     }
 }
