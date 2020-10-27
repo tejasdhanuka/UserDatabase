@@ -15,6 +15,7 @@ final class UserDetailViewModel {
     let companyDetail: Company
     let phone: String
     let website: String
+    let isSelected: Bool
     
     init(from user: UserDatabase) {
         self.name = user.name
@@ -23,5 +24,6 @@ final class UserDetailViewModel {
         self.companyDetail = user.company
         self.phone = user.phone
         self.website = user.website
+        self.isSelected = user.isSelected
     }
 }

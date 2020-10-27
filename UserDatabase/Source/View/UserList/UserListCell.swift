@@ -19,6 +19,7 @@ final class UserListCell: UITableViewCell {
             phoneNumberLabel.text = "Cell: \(viewModel.phone)"
             websiteLabel.text = viewModel.website
             companyNameLabel.text = "Company: \(viewModel.companyName)"
+            starButton.setImage(viewModel.isSelected ? UIImage(named: "star-selected") : UIImage(named: "star-unselected"), for: .normal)
         }
     }
     
@@ -34,6 +35,11 @@ final class UserListCell: UITableViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
         label.textAlignment = .left
         return label
+    }()
+    
+    private let starButton: UIButton = {
+        let button = UIButton()
+        return button
     }()
     
     private let phoneNumberLabel: UILabel = {
@@ -76,11 +82,13 @@ final class UserListCell: UITableViewCell {
     private func setup() {
         containerView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        starButton.translatesAutoresizingMaskIntoConstraints = false
         phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         websiteLabel.translatesAutoresizingMaskIntoConstraints = false
         companyNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(nameLabel)
+        containerView.addSubview(starButton)
         containerView.addSubview(phoneNumberLabel)
         containerView.addSubview(websiteLabel)
         containerView.addSubview(companyNameLabel)
@@ -88,8 +96,14 @@ final class UserListCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8.0),
-            nameLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16.0),
-            nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -16.0)
+            nameLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16.0)
+        ])
+        
+        NSLayoutConstraint.activate([
+            starButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8.0),
+            starButton.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 4.0),
+            starButton.widthAnchor.constraint(equalToConstant: 20.0),
+            starButton.heightAnchor.constraint(equalToConstant: 20.0)
         ])
         
         NSLayoutConstraint.activate([

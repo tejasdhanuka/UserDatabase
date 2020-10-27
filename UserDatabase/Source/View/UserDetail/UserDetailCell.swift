@@ -14,17 +14,13 @@ final class UserDetailCell: UITableViewCell {
     var viewModel: UserDetailViewModel! {
         didSet {
             guard let viewModel = viewModel else { return }
-            
             nameLabel.text = "Name:\n\(viewModel.name)"
-            
             userNameLabel.text = "\nUsername:\n\(viewModel.userName)"
-            
             addressLabel.text = "\nAddress:\n\(viewModel.address.suite), \(viewModel.address.street),\n\(viewModel.address.city), \(viewModel.address.zipcode)\n Coordinates: \(viewModel.address.geo.lat), \(viewModel.address.geo.lng)"
-            
             companyDetailsLabel.text = "\nCompany:\n\(viewModel.companyDetail.name)\n\(viewModel.companyDetail.catchPhrase)\n\(viewModel.companyDetail.bs)"
             phoneNumberLabel.text = "\nCell:\n\(viewModel.phone)"
-            
             websiteLabel.text = "\nWebsite:\n\(viewModel.website)"
+            starButton.setImage(viewModel.isSelected ? UIImage(named: "star-selected") : UIImage(named: "star-unselected"), for: .normal)
         }
     }
     
@@ -88,6 +84,11 @@ final class UserDetailCell: UITableViewCell {
         return label
     }()
     
+    private let starButton: UIButton = {
+        let button = UIButton()
+        return button
+    }()
+    
     // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -109,6 +110,7 @@ final class UserDetailCell: UITableViewCell {
         companyDetailsLabel.translatesAutoresizingMaskIntoConstraints = false
         phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         websiteLabel.translatesAutoresizingMaskIntoConstraints = false
+        starButton.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(nameLabel)
         containerView.addSubview(userNameLabel)
@@ -116,6 +118,7 @@ final class UserDetailCell: UITableViewCell {
         containerView.addSubview(companyDetailsLabel)
         containerView.addSubview(phoneNumberLabel)
         containerView.addSubview(websiteLabel)
+        containerView.addSubview(starButton)
         contentView.addSubview(containerView)
         
         NSLayoutConstraint.activate([
@@ -124,6 +127,15 @@ final class UserDetailCell: UITableViewCell {
             nameLabel.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -16.0)
         ])
         
+        NSLayoutConstraint.activate([
+            starButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8.0),
+            starButton.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 4.0),
+            starButton.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -16.0),
+            starButton.widthAnchor.constraint(equalToConstant: 20.0),
+            starButton.heightAnchor.constraint(equalToConstant: 20.0)
+        ])
+        starButton.addTarget(self, action: #selector(pressed(sender:)), for: .touchUpInside)
+
         NSLayoutConstraint.activate([
             userNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8.0),
             userNameLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16.0),
@@ -161,5 +173,9 @@ final class UserDetailCell: UITableViewCell {
             containerView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+    
+    @objc func pressed(sender: UIButton!) {
+        print(sender ?? "Did not get sender instance")
     }
 }

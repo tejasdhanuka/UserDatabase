@@ -12,11 +12,12 @@ struct UserListCellViewModel {
     let phone: String
     let website: String
     let companyName: String
-    
+    let isSelected: Bool
     init(from user: UserDatabase) {
         self.name = user.name
         self.phone = user.phone
         self.website = user.website
         self.companyName = user.company.name
+        self.isSelected = user.isSelected
     }
 }
