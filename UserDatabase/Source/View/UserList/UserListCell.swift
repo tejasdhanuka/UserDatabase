@@ -39,6 +39,7 @@ final class UserListCell: UITableViewCell {
     
     private let starButton: UIButton = {
         let button = UIButton()
+        button.isUserInteractionEnabled = false
         return button
     }()
     

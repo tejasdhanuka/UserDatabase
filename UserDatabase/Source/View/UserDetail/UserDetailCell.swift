@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol UserDetailCellDelegate: AnyObject {
+    func didTapFavoriteButton(for id: Int?)
+}
+
 final class UserDetailCell: UITableViewCell {
     
     // MARK: - Properties
+    
+    weak var delegate: UserDetailCellDelegate?
     
     var viewModel: UserDetailViewModel! {
         didSet {
@@ -21,8 +27,11 @@ final class UserDetailCell: UITableViewCell {
             phoneNumberLabel.text = "\nCell:\n\(viewModel.phone)"
             websiteLabel.text = "\nWebsite:\n\(viewModel.website)"
             starButton.setImage(viewModel.isSelected ? UIImage(named: "star-selected") : UIImage(named: "star-unselected"), for: .normal)
+            self.id = viewModel.id
         }
     }
+    
+    private var id: Int?
     
     private let containerView: UIView = {
         let view = UIView()
@@ -176,6 +185,6 @@ final class UserDetailCell: UITableViewCell {
     }
     
     @objc func pressed(sender: UIButton!) {
-        print(sender ?? "Did not get sender instance")
+        delegate?.didTapFavoriteButton(for: id)
     }
 }

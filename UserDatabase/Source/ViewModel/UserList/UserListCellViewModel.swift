@@ -12,7 +12,8 @@ struct UserListCellViewModel {
     let phone: String
     let website: String
     let companyName: String
-    let isSelected: Bool
+    var isSelected: Bool
+    
     init(from user: UserDatabase) {
         self.name = user.name
         self.phone = user.phone

@@ -9,15 +9,17 @@ import Foundation
 
 final class UserDetailViewModel {
     
+    let id: Int
     let name: String
     let userName: String
     let address: Address
     let companyDetail: Company
     let phone: String
     let website: String
-    let isSelected: Bool
+    var isSelected: Bool
     
     init(from user: UserDatabase) {
+        self.id = user.id
         self.name = user.name
         self.userName = user.username
         self.address = user.address

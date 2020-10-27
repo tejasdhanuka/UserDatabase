@@ -35,6 +35,13 @@ final class UserListViewController: UIViewController {
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.userListTableView.reloadData()
+        }
+    }
+    
     // MARK: - Setup
     
     private func setup() {
@@ -104,6 +111,18 @@ extension UserListViewController: UITableViewDataSource {
 extension UserListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC = UserDetailViewController(viewModel: viewModel.detailViewModel(for: indexPath))
+        detailVC.delegate = self
         self.navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+// MARK: UserDetailViewControllerDelegate
+
+extension UserListViewController: UserDetailViewControllerDelegate {
+    func didTapFavoriteButton(for id: Int?, value: Bool) {
+        viewModel.didSelectFavorite(for: id, value: value)
+        DispatchQueue.main.async {
+            self.userListTableView.reloadData()
+        }
     }
 }

@@ -7,12 +7,16 @@
 
 import UIKit
 
+protocol UserDetailViewControllerDelegate: AnyObject {
+    func didTapFavoriteButton(for id: Int?, value: Bool)
+}
+
 final class UserDetailViewController: UIViewController {
 
     // MARK: - Properties
     private var userDetailTableView: UITableView!
     private var viewModel: UserDetailViewModel
-
+    weak var delegate: UserDetailViewControllerDelegate?
   
     // MARK: - Init
     
@@ -83,6 +87,7 @@ extension UserDetailViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.selectionStyle = .none
+        cell.delegate = self
         cell.viewModel = viewModel
         return cell
     }
@@ -93,5 +98,17 @@ extension UserDetailViewController: UITableViewDataSource {
 extension UserDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         return
+    }
+}
+
+// MARK: UserDetailCellDelegate
+
+extension UserDetailViewController: UserDetailCellDelegate {
+    func didTapFavoriteButton(for id: Int?) {
+        viewModel.isSelected.toggle()
+        DispatchQueue.main.async {
+            self.userDetailTableView.reloadData()
+        }
+        delegate?.didTapFavoriteButton(for: id, value: viewModel.isSelected)
     }
 }

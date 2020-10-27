@@ -58,9 +58,17 @@ final class UserDatabaseViewModel {
     
     func detailViewModel(for indexPath: IndexPath) -> UserDetailViewModel {
         guard let userDatabaseList = userDatabaseList else {
-            fatalError("Invalid indexPath: \(indexPath)")
+            fatalError("User Database List not available")
         }
         let user = userDatabaseList[indexPath.row]
         return UserDetailViewModel(from: user)
+    }
+    
+    func didSelectFavorite(for id: Int?, value: Bool) {
+        if userDatabaseList != nil,
+           id != nil,
+           let indexOfId = userDatabaseList!.firstIndex(where: { $0.id == id }) {
+            userDatabaseList![indexOfId].isSelected = value
+        }
     }
 }
