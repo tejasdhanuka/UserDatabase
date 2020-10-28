@@ -12,7 +12,7 @@ final class UserDatabaseViewModel {
     // MARK: - Properties
     
     private let apiClient: UserDatabaseAPIClient
-    private var userDatabaseList: [UserDatabase]?
+    var userDatabaseList: [UserDatabase]?
     
     // MARK: - Init
     
